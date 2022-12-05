@@ -18,9 +18,7 @@ class _Profile2State extends State<Profile2> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            body: Stack(
-      alignment: AlignmentDirectional.centerStart,
-      children: [
+            body:
         FutureBuilder(
           future: Provider.of<UserdetailsProvider>(context).userdetailsfromapi,
           builder: (context, snapshot) {
@@ -34,17 +32,29 @@ class _Profile2State extends State<Profile2> {
                   // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: NetworkImage(
-                                  'https://images.unsplash.com/photo-1522252234503-e356532cafd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80')),
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(70),
-                              bottomRight: Radius.circular(70))),
-                      height: MediaQuery.of(context).size.height / 2.5,
-                      width: MediaQuery.of(context).size.width,
+                    Stack(
+                      alignment: AlignmentDirectional.bottomStart,
+                      children:[ Container(
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: NetworkImage(
+                                    'https://images.unsplash.com/photo-1522252234503-e356532cafd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80')),
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(70),
+                                bottomRight: Radius.circular(70))),
+                        height: MediaQuery.of(context).size.height / 2.5,
+                        width: MediaQuery.of(context).size.width,
+                      ),
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: CircleAvatar(
+                              radius: 65,
+                              backgroundColor: Colors.white,
+                              child: CircleAvatar(
+                                  radius: 60, backgroundImage: NetworkImage(theimage))),
+                        ),
+                      ]
                     ),
                     Padding(
                       padding:
@@ -219,16 +229,16 @@ class _Profile2State extends State<Profile2> {
             }
           },
         ),
-        Positioned(
-          top: 195,
-          left: 15,
-          child: CircleAvatar(
-              radius: 65,
-              backgroundColor: Colors.white,
-              child: CircleAvatar(
-                  radius: 60, backgroundImage: NetworkImage(theimage))),
-        ),
-      ],
-    )));
+      
+    ));
   }
 }
+  // Positioned(
+  //         top: 195,
+  //         left: 15,
+  //         child: CircleAvatar(
+  //             radius: 65,
+  //             backgroundColor: Colors.white,
+  //             child: CircleAvatar(
+  //                 radius: 60, backgroundImage: NetworkImage(theimage))),
+  //       ),

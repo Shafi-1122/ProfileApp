@@ -210,41 +210,35 @@ Padding(
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(38.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            
-                            SizedBox(
-                              height: 40,
-                              width: 300,
-                              child: ElevatedButton(
-                                style: ButtonStyle(backgroundColor:MaterialStateProperty.all( const Color.fromARGB(223, 240, 75, 75)) ),
-                                  onPressed: () {
-                                    setState(() {
-                                      if(namecontroller.text.isNotEmpty&&useridController.text.isNotEmpty&&emailController.text.isNotEmpty&&addressController.text.isNotEmpty){
-                                        createuser();
-                                        
-                                         showDialog(context: context, builder: (context){
-                                        return AlertDialog(title: const Text('Restart App to View updates'),actions: [TextButton(onPressed: (){
-                                          Navigator.pop(context);
-                                        }, child:  const Text('Ok'))],);
-                                      } );
-                                      }
-                                      else{
-                                      showDialog(context: context, builder: (context){
-                                        return AlertDialog(title: const Text('Missing Field'),actions: [TextButton(onPressed: (){
-                                          Navigator.pop(context);
-                                        }, child:  const Text('Ok'))],);
-                                      } );
-                                      }
-                                      
-                                    });
-                                  },
-                                  child: const Text('Save',style: TextStyle(
-                                      color: Colors.white, fontSize: 20),)),
-                            ),
-                          ],
+                        padding: const EdgeInsets.only(top:20,left: 8,right: 8),
+                        child: SizedBox(
+                          height: 40,
+                          width: 300,
+                          child: ElevatedButton(
+                            style: ButtonStyle(backgroundColor:MaterialStateProperty.all( const Color.fromARGB(223, 240, 75, 75)) ),
+                              onPressed: () {
+                                setState(() {
+                                  if(namecontroller.text.isNotEmpty&&useridController.text.isNotEmpty&&emailController.text.isNotEmpty&&addressController.text.isNotEmpty){
+                                    createuser();
+                                    
+                                     showDialog(context: context, builder: (context){
+                                    return AlertDialog(title: const Text('Restart App to View updates'),actions: [TextButton(onPressed: (){
+                                      Navigator.pop(context);
+                                    }, child:  const Text('Ok'))],);
+                                  } );
+                                  }
+                                  else{
+                                  showDialog(context: context, builder: (context){
+                                    return AlertDialog(title: const Text('Missing Field'),actions: [TextButton(onPressed: (){
+                                      Navigator.pop(context);
+                                    }, child:  const Text('Ok'))],);
+                                  } );
+                                  }
+                                  
+                                });
+                              },
+                              child: const Text('Save',style: TextStyle(
+                                  color: Colors.white, fontSize: 20),)),
                         ),
                       ),
                     ],
