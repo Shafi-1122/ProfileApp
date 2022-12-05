@@ -1,4 +1,4 @@
-import 'package:avodha_test/model/profilemodel.dart';
+
 import 'package:avodha_test/services/providers/userdetailsprovider.dart';
 import 'package:avodha_test/view/editprofile.dart';
 import 'package:flutter/material.dart';
@@ -51,12 +51,18 @@ class _Profile2State extends State<Profile2> {
                           const EdgeInsets.only(left: 30.0, top: 45, right: 30),
                       child: Row(
                         children: [
-                          Text(
-                            "${snapshot.data!.data![0].username} ",
-                            style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.w600,
-                                color: Color.fromARGB(255, 0, 0, 0)),
+                          Expanded(
+                            child: Text(
+                               
+                              "${snapshot.data!.data![0].username} ",
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: const TextStyle(
+                                 
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color.fromARGB(255, 0, 0, 0)),
+                            ),
                           ),
                           const Spacer(),
                           SizedBox(
@@ -67,18 +73,18 @@ class _Profile2State extends State<Profile2> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: ((context) => Editscreen(
+                                        builder: ((context) => const Editscreen(
                                               title: '',
                                             ))));
                               },
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    const Color.fromARGB(223, 240, 75, 75)),
+                              ),
                               child: const Text(
                                 "Edit",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 20),
-                              ),
-                              style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    const Color.fromARGB(223, 240, 75, 75)),
                               ),
                             ),
                           ),
@@ -118,10 +124,10 @@ class _Profile2State extends State<Profile2> {
                                         Icons.person,
                                         color: Color.fromARGB(255, 0, 0, 0),
                                       ),
-                                      Spacer(),
+                                      const Spacer(),
                                       Text(
                                         '${snapshot.data!.data![0].userId}',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Color.fromARGB(255, 0, 0, 0),
                                             fontWeight: FontWeight.w500),
                                       )
@@ -134,13 +140,13 @@ class _Profile2State extends State<Profile2> {
                                   ),
                                   child: Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.call,
                                         color: Color.fromARGB(255, 0, 0, 0),
                                       ),
-                                      Spacer(),
+                                      const Spacer(),
                                       Text('${snapshot.data!.data![0].mobile}',
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               color:
                                                   Color.fromARGB(255, 0, 0, 0),
                                               fontWeight: FontWeight.w500))
@@ -153,14 +159,14 @@ class _Profile2State extends State<Profile2> {
                                   ),
                                   child: Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.email,
                                         color: Color.fromARGB(255, 0, 0, 0),
                                       ),
-                                      Spacer(),
+                                      const Spacer(),
                                       Text(
                                         '${snapshot.data!.data![0].email}',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Color.fromARGB(255, 7, 6, 6),
                                             fontWeight: FontWeight.w500),
                                       )
@@ -173,16 +179,21 @@ class _Profile2State extends State<Profile2> {
                                   ),
                                   child: Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.location_city,
                                         color: Color.fromARGB(255, 0, 0, 0),
                                       ),
-                                      Spacer(),
-                                      Text("${snapshot.data!.data![0].address}",
-                                          style: TextStyle(
-                                              color:
-                                                  Color.fromARGB(255, 0, 0, 0),
-                                              fontWeight: FontWeight.w500))
+                                      const Spacer(),
+                                      Expanded(
+                                        flex: -1,
+                                        child: Text("${snapshot.data!.data![0].address}",
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
+                                            style: const TextStyle(
+                                                color:
+                                                    Color.fromARGB(255, 0, 0, 0),
+                                                fontWeight: FontWeight.w500)),
+                                      )
                                     ],
                                   ),
                                 ),
@@ -195,16 +206,16 @@ class _Profile2State extends State<Profile2> {
               );
             } else {
               return Shimmer.fromColors(
+                  baseColor: const Color.fromARGB(223, 240, 75, 75),
+                  highlightColor: Colors.grey,
                   child: Container(
                     height: MediaQuery.of(context).size.height,
                     width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: const Color.fromARGB(223, 240, 75, 75),
+                    decoration: const BoxDecoration(
+                  
+                      color: Color.fromARGB(223, 240, 75, 75),
                     ),
-                  ),
-                  baseColor: Color.fromARGB(223, 240, 75, 75),
-                  highlightColor: Colors.grey);
+                  ));
             }
           },
         ),

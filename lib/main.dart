@@ -1,10 +1,7 @@
-import 'package:avodha_test/model/profilemodel.dart';
-import 'package:avodha_test/services/providers/postdataprovider.dart';
 import 'package:avodha_test/services/providers/userdetailsprovider.dart';
-import 'package:avodha_test/view/editprofile.dart';
+
 import 'package:avodha_test/view/profilepage.dart';
-import 'package:avodha_test/view/profilepage.dart';
-import 'package:avodha_test/view/profilepage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,17 +15,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-     return  MultiProvider(
-      providers: [
-        ChangeNotifierProvider( create: (context) => UserdetailsProvider()),
-        ChangeNotifierProvider( create: (context) => DataClass()),
-      ],
-      child: 
-      
-       MaterialApp(
-           debugShowCheckedModeBanner: false,
-           home: Profile2(),
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => UserdetailsProvider()),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Profile2(),
         ));
   }
 }
-

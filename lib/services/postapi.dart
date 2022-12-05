@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:avodha_test/model/postmodel.dart';
+import 'package:avodha_test/model/profilemodel.dart';
 import 'package:http/http.dart' as http;
 
 
 
-Future<http.Response?> updateuserdetails(UserDetails data) async {
+Future<http.Response?> updateuserdetails(Datum data) async {
   http.Response? response;
   try {
     response =
@@ -17,7 +17,7 @@ Future<http.Response?> updateuserdetails(UserDetails data) async {
         },
         body: jsonEncode(data.toJson()));
         
-         print(response.body);
+  
   } catch (e) {
     log(e.toString());
   }

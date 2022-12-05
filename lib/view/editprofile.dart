@@ -1,5 +1,6 @@
-import 'package:avodha_test/model/postmodel.dart';
-import 'package:avodha_test/services/providers/postdataprovider.dart';
+
+import 'package:avodha_test/model/profilemodel.dart';
+
 import 'package:avodha_test/services/providers/userdetailsprovider.dart';
 import 'package:flutter/material.dart';
 
@@ -30,15 +31,15 @@ class _MyHomePageState extends State<Editscreen> {
     String address = addressController.text.trim();
     String userid = useridController.text.trim();
 
-    UserDetails userDetails = UserDetails(
-        imagePath: imagePath,
+    Datum userDetails = Datum(
+        imageBinary: imagePath,
         username: username,
         email: email,
         mobile: mobile,
         address: address,
         userId: userid);
     Future<void> createuser() async {
-      var provider = Provider.of<DataClass>(context, listen: false);
+      var provider = Provider.of<UserdetailsProvider>(context, listen: false);
 
       return provider.postData(userDetails);
     }
@@ -53,10 +54,30 @@ class _MyHomePageState extends State<Editscreen> {
                   child: Column(
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(16.0),
                         child: Row(
                           children: [
-                            FutureBuilder(
+                            
+                            const Padding(
+                              padding: EdgeInsets.only(left:8.0),
+                              child: Text(
+                                "Edit Profile ",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color.fromARGB(255, 0, 0, 0)),
+                              ),
+                            ),
+                            const Spacer(),
+                            IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(Icons.close))
+                          ],
+                        ),
+                      ),
+                     FutureBuilder(
                               future: Provider.of<UserdetailsProvider>(context)
                                   .userdetailsfromapi,
                               builder: (context, snapshot) {
@@ -70,21 +91,21 @@ class _MyHomePageState extends State<Editscreen> {
                                     child: Stack(
                                       alignment: AlignmentDirectional.center,
                                       children: [CircleAvatar(
-                                        radius: 38,
+                                        radius: 60,
                                         backgroundColor: Colors.white,
                                         child: Consumer<UserdetailsProvider>(
                                           builder: (context, value, child) {
                                             if (value.image != null) {
                                               return CircleAvatar(
-                                                  radius: 34,
+                                                  radius: 60,
                                                   backgroundImage:
                                                       FileImage(value.image));
                                             } else {
                                               return CircleAvatar(
-                                                radius: 38,
+                                                radius: 60,
                                                 backgroundColor: Colors.white,
                                                 child: CircleAvatar(
-                                                  radius: 34,
+                                                  radius: 55,
                                                   backgroundImage: NetworkImage(
                                                       snapshot.data!.data![0]
                                                           .imageBinary
@@ -95,16 +116,16 @@ class _MyHomePageState extends State<Editscreen> {
                                           },
                                         ),
                                       ),
-                             Icon(Icons.add_a_photo)
+                             const Icon(Icons.add_a_photo)
                                       ]
                                     ),
                                   );
                                 } else {
                                   return CircleAvatar(
-                                    radius: 38,
+                                    radius: 60,
                                     backgroundColor: Colors.white,
                                     child: CircleAvatar(
-                                      radius: 34,
+                                      radius: 55,
                                       backgroundImage: NetworkImage(snapshot
                                           .data!.data![0].imageBinary
                                           .toString()),
@@ -113,109 +134,118 @@ class _MyHomePageState extends State<Editscreen> {
                                 }
                               },
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left:8.0),
-                              child: Text(
-                                "Edit Profile ",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w400,
-                                    color: Color.fromARGB(255, 0, 0, 0)),
-                              ),
+                      Padding(
+                        padding: const EdgeInsets.only(top:20,left: 8,right: 8),
+                        child: SizedBox(
+                          height: 50,
+                          width: 300,
+                          child: TextFormField(
+                            controller: namecontroller,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(
+                               ),
+                              hintText: 'Name',
                             ),
-                            Spacer(),
-                            IconButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                icon: Icon(Icons.close))
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top:20,left: 8,right: 8),
+                        child: SizedBox(
+                          height: 50,
+                          width: 300,
+                          child: TextFormField(
+                            controller: emailController,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(
+                               ),
+                              hintText: 'Email',
+                            ),
+                          ),
+                        ),
+                      ),
+Padding(
+                        padding: const EdgeInsets.only(top:20,left: 8,right: 8),
+                        child: SizedBox(
+                          height: 50,
+                          width: 300,
+                          child: TextFormField(
+                            controller: mobilecontroller,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(
+                               ),
+                              hintText: 'Contact no.',
+                            ),
+                          ),
+                        ),
+                      ),
+                     Padding(
+                        padding: const EdgeInsets.only(top:20,left: 8,right: 8),
+                        child: SizedBox(
+                          height: 50,
+                          width: 300,
+                          child: TextFormField(
+                            controller: addressController,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(
+                               ),
+                              hintText: 'Address',
+                            ),
+                          ),
+                        ),
+                      ),
+                    Padding(
+                        padding: const EdgeInsets.only(top:20,left: 8,right: 8),
+                        child: SizedBox(
+                          height: 50,
+                          width: 300,
+                          child: TextFormField(
+                            controller: useridController,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(
+                               ),
+                              hintText: 'Userid',
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(38.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            
+                            SizedBox(
+                              height: 40,
+                              width: 300,
+                              child: ElevatedButton(
+                                style: ButtonStyle(backgroundColor:MaterialStateProperty.all( const Color.fromARGB(223, 240, 75, 75)) ),
+                                  onPressed: () {
+                                    setState(() {
+                                      if(namecontroller.text.isNotEmpty&&useridController.text.isNotEmpty&&emailController.text.isNotEmpty&&addressController.text.isNotEmpty){
+                                        createuser();
+                                        
+                                         showDialog(context: context, builder: (context){
+                                        return AlertDialog(title: const Text('Restart App to View updates'),actions: [TextButton(onPressed: (){
+                                          Navigator.pop(context);
+                                        }, child:  const Text('Ok'))],);
+                                      } );
+                                      }
+                                      else{
+                                      showDialog(context: context, builder: (context){
+                                        return AlertDialog(title: const Text('Missing Field'),actions: [TextButton(onPressed: (){
+                                          Navigator.pop(context);
+                                        }, child:  const Text('Ok'))],);
+                                      } );
+                                      }
+                                      
+                                    });
+                                  },
+                                  child: const Text('Save',style: TextStyle(
+                                      color: Colors.white, fontSize: 20),)),
+                            ),
                           ],
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: namecontroller,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                             ),
-                            hintText: 'name',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: emailController,
-                          decoration: const InputDecoration(
-                            hintText: 'email',
-                            border: OutlineInputBorder(
-                               ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: mobilecontroller,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                               ),
-                            hintText: 'mobile',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: addressController,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                               ),
-                            hintText: 'address',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: useridController,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                                ),
-                            hintText: 'id',
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          
-                          ElevatedButton(
-                            style: ButtonStyle(backgroundColor:MaterialStateProperty.all( Color.fromARGB(223, 240, 75, 75)) ),
-                              onPressed: () {
-                                setState(() {
-                                  if(namecontroller.text.isNotEmpty&&useridController.text.isNotEmpty&&emailController.text.isNotEmpty&&addressController.text.isNotEmpty){
-                                    createuser();
-                                    
-                                     showDialog(context: context, builder: (context){
-                                    return AlertDialog(title: Text('Restart App to View updates'),actions: [TextButton(onPressed: (){
-                                      Navigator.pop(context);
-                                    }, child:  Text('Ok'))],);
-                                  } );
-                                  }
-                                  else{
-                                  showDialog(context: context, builder: (context){
-                                    return AlertDialog(title: Text('Missing Field'),actions: [TextButton(onPressed: (){
-                                      Navigator.pop(context);
-                                    }, child:  Text('Ok'))],);
-                                  } );
-                                  }
-                                  
-                                });
-                              },
-                              child: const Text('create album')),
-                        ],
                       ),
                     ],
                   ),
@@ -224,3 +254,4 @@ class _MyHomePageState extends State<Editscreen> {
     );
   }
 }
+

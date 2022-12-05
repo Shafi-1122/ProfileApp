@@ -26,12 +26,12 @@ class ProfileDetails {
 
 class Datum {
     Datum({
-        this.userId,
-        this.imageBinary,
-        this.username,
-        this.email,
-        this.mobile,
-        this.address,
+     required   this.userId,
+      required  this.imageBinary,
+      required  this.username,
+      required  this.email,
+       required this.mobile,
+      required  this.address,
     });
 
     String? userId;
